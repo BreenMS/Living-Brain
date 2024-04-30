@@ -12,7 +12,7 @@ Adenosine-to-inosine (A-to-I) editing is a prevalent post-transcriptional RNA mo
 
 Here we described the main computational code used to generate all results and figures in this body of work.  
 
-All RNA editing matrices and sample level RNA editing sites across the DLPFC, forebrain and hindbrain can be downloaded from [Synapse.org](https://www.synapse.org/#!Synapse:syn26434508/files/).  
+All RNA editing matrices and sample level RNA editing sites derived from the Living Brain Project will be available shortly on [Synapse.org](https://www.synapse.org/#!Synapse:syn26434508/files/).  
 
 # This work entails four main levels of analysis:
 1. Compute an Alu Editing Index (AEI) from a STAR mapped bam file  [(RNAEditingIndexer v1.0)](https://github.com/a2iEditing/RNAEditingIndexer)<br /> 
