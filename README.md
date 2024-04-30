@@ -18,7 +18,6 @@ All RNA editing matrices and sample level RNA editing sites derived from the Liv
 1. Compute an Alu Editing Index (AEI) from a STAR mapped bam file  [(RNAEditingIndexer v1.0)](https://github.com/a2iEditing/RNAEditingIndexer)<br /> 
 2. Quantifying RNA editing sites from STAR mapped bam files using de novo methods [(reditools v2.0)](https://github.com/tizianoflati/reditools2.0) and [(JACUSA2)](https://github.com/dieterich-lab/JACUSA2)<br /> 
 3. Quantifying RNA editing from STAR mapped bam files using a list of predefined list of sites (code provided below)<br /> 
-4. Quantifying RNA hyper-editing sites from STAR unmapped fastq files [(method based on Porath et al., 2017)](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1315-y)<br /> 
 
 An overview of our analytical approach:<br /> 
 <img width="500" alt="Screen Shot 2022-07-07 at 10 16 40 AM" src="https://github.com/BreenMS/Living-Brain/blob/main/WorkFlow.png">
@@ -73,11 +72,6 @@ CNS_A2G_events.txt = A predefined list of 166,215 A-to-I RNA editing sites detec
 
 <br />  
 
-# 4. Quantifying RNA hyper-editing sites from STAR unmapped fastq files:
-We used already available software from the [RNA hyper-editing GitHub account](https://github.com/hagitpt/Hyper-editing) to quantify RNA hyper-editing sites based on a STAR unmapped fastq files. The method is describe in the original publication, [Genome Biology (2017)](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1315-y). We provide a detailed example of how we execute this pipeline [here](https://github.com/ryncuddleston/RNA-hyper-editing) .  <br /> 
-
-
-<br />  
 
 # Supplemental Data Tables 1-10:
 Table S1. Alu editing index across all samples in the current study. Alu editing indexes and corresponding metadata for all samples in the current study. (Code described above) <br />  
