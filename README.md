@@ -21,7 +21,7 @@ All RNA editing matrices and sample level RNA editing sites derived from the Liv
 4. Quantifying RNA hyper-editing sites from STAR unmapped fastq files [(method based on Porath et al., 2017)](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1315-y)<br /> 
 
 An overview of our analytical approach:<br /> 
-<img width="500" alt="Screen Shot 2022-07-07 at 10 16 40 AM" src="https://user-images.githubusercontent.com/22500312/177795799-90edf08a-106e-44a6-a646-4569efdac555.png">
+<img width="500" alt="Screen Shot 2022-07-07 at 10 16 40 AM" src="https://github.com/BreenMS/Living-Brain/blob/main/WorkFlow.png">
 
 # 1. Compute AEI from a STAR mapped bam file:
 We used already available software from the [RNAEditingIndexer GitHub account](https://github.com/a2iEditing/RNAEditingIndexer) to compute an AEI based on a mapped bam file. The method is describe in the original publication, [Nat. Methods (2019)](https://pubmed.ncbi.nlm.nih.gov/31636457/). Here, we provide an example of bash shell script that executes the AEI on one sample. Requirements and parameters are described in full in the bash script.  <br /> 
