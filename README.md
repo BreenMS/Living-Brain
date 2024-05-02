@@ -72,68 +72,15 @@ CNS_A2G_events.txt = A predefined list of 166,215 A-to-I RNA editing sites detec
 
 <br />  
 
+# Supplemental Data Tables 1-5:
+Supplemental Data 1. Summary of Living Brain Project demographics and RNA editing metrics, including external postmortem datasets. <br />  
+Supplemental Data 2. RNA editing summary statistics across the Living Brain Project and secondary in vitro and in vivo experiments. <br />  
+Supplemental Data 3. RNA editing summary metrics across secondary postmortem cohorts. <br />  
+Supplemental Data 4. Cell-specific cataloging of A-to-I sites in postmortem human cortex. <br />  
+Supplemental Data 5. RNA editing quantitative trait loci in the Living Brain Project. <br />  
 
-# Supplemental Data Tables 1-10:
-Table S1. Alu editing index across all samples in the current study. Alu editing indexes and corresponding metadata for all samples in the current study. (Code described above) <br />  
-Table S2. Sample level summary of all high-quality RNA editing sites. Summary of all high-quality RNA editing sites detected and their genomic locations per sample in the DLPFC, forebrain and hindbrain. (All data available on [Synapse](https://www.synapse.org/#!Synapse:syn26434508/files/)) <br />  
-Table S3. Differentially regulated RNA editing sites across development. Summary statistics for sites that are dynamically regulated across brain development in the DLPFC, forebrain and hindbrain. We also provide the following information: 1) pathway enrichment; 2) disease-gene set enrichment; 3) associations between changes in editing levels and gene expression levels; 4) validation rates in hiPSCs and aging samples.  <br />  
-<br />  An example of running differential editing:
+# Supplemental Note 1
+Supplemental Note 1. Description of cell-specific A-to-I sites derived from fluorescence activated nuclei sorted (FANS) neuronal and non-neuronal cell types from the postmortem human cortex. References are included within the supplemental note. <br />
 
-```ruby
-library(limma)
-library(edgeR)
-
-GeneExprs <- read.delim("BrainVar_editing_matrix.txt", check.names=FALSE, stringsAsFactors=FALSE, row.names=1)
-info <- read.delim("BrainVar_metadata.txt", check.names=FALSE, stringsAsFactors=FALSE) #Count_NPC_noOut_targets.txt
-
-Stage = as.factor(info$Stage)
-Ancestry = as.factor(info$Ancestry)
-Sex = as.factor(info$Sex)
-ADAR1 = (info$ADAR1)
-ADAR2 = (info$ADAR2)
-ADAR3 = (info$ADAR3)
-RIN = (info$RIN)
-Neurons = (info$Neurons)
-
-design <- model.matrix(~0+Stage+Sex+Ancestry)
-#design <- model.matrix(~0+Stage+Sex+Ancestry+Neurons) #model to correct for neuronal fractions
-#design <- model.matrix(~0+Stage+Sex+Ancestry+Neurons+ADAR1+ADAR2) #model to correct for neuronal fractions, ADAR1, and ADAR2
-fit <- lmFit(GeneExprs,design)
-cm <-makeContrasts(DevEffect = (StagePostnatal - StagePrenatal),levels=design)
-fit2 <- contrasts.fit(fit, cm)
-fitDupCor <- eBayes(fit2)
-topTable(fitDupCor, coef="DevEffect")
-DE_sites<- topTable(fitDupCor, coef="DevEffect", n=nrow(GeneExprs))
-write.table(DE_sites, "DEG_BrainVar_sites.txt", sep="\t")
-```
-
-Table S4. miRNA binding affinity predictions to 3’UTRs. miRanda analysis output for editing sites overlapping miRNA seed regions and the resulting alignments and minimum free energy calculations for edited and unedited sequences.<br />  
-<br />  An example of running miRANDA:
-```ruby
-miranda hsa.mature.fa 3UTR_sites_targetA_unedited.fa -strict > miRanda_out_targetA_unedited.txt
-miranda hsa.mature.fa 3UTR_sites_targetG_edited.fa -strict > miRanda_out_targetG_edited.txt
-
-grep -A 1 "Scores for this hit:" miRanda_out_targetA_unedited.txt | sort | grep '>' > match_miRanda_out_targetA_unedited.txt
-grep -A 1 "Scores for this hit:" miRanda_out_targetG_edited.txt | sort | grep '>' > match_miRanda_out_targetG_edited.txt
-
-```
-
-
-Table S5. Temporally regulated recoding sites. This table includes information temporally regulated recoding sites across human brain development, pathway level enrichment and validation in hiPSC models of corticogenesis.  <br />  
-Table S6. Temporally regulated RNA hyper-editing events. Summary statistics on RNA hyper-editing events per gene across development as well as per sample for all transcriptome samples in the current study. <br />  
-Table S7. Mechanistic investigation of RNA hyper-editing. Summary statistics for RNA hyper-editing sites that are predicted to be splice alternating via SpliceAI, occur in retained introns via SIRI.<br />  
-<br />  An example of running SpliceAI:
-```ruby
-spliceai -I BrainVar_sites.vcf -O output.vcf -R GRCh38.chrom.fa -A grch38
-```
-<br />  An example of running SIRI:
-```ruby
-SIRI --gtf gencode.v30.primary_assembly.annotation.gtf --bam Aligned.sortedByCoord.out.bam --anchor 8 --length 100 --lib first --read P 
-
-```
-
-Table S8. RNA editing summary results in animal models of neurodevelopment. Summary statistics on the AEI and global RNA hyper-editing per sample in mouse and macaque models of neurodevelopment. (Code described above). <br />  
-Table S9. Temporal predominate edQTLs. Summary statistics for leading editing-variant pairs (edQTLs), including constant, prenatal and postnatal predominate edQTLs. <br />  
-Table S10. GWAS-edQTL co-localization. Summary statistics of all significant GWAS risk loci that colocalize with edQTLs in the current study. <br />  
 
 
